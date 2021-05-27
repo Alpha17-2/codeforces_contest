@@ -73,6 +73,41 @@ class _homeState extends State<home> {
           indicatorColor: Colors.red,
         ),
       ),
+      body: TabBarView(
+        children: [
+          // Ongoing contest
+          Padding(padding: EdgeInsets.only(left: 8,right: 8,top: 20,bottom: 15)
+          ,child: FutureBuilder<List<Result>>(
+              future: codeforcesApiServices().fetchOngoingContestList(),
+              builder: (context,snapshots){
+                if(!snapshots.hasData)
+                  return Loading();
+                return ListView.builder(itemBuilder: (context,index){
+                  return displayContest(snapshots.data,index);
+                },
+                  itemCount: snapshots.data.length,
+                );
+              },
+            ),
+          ),
+
+          // Upcoming contests
+          Padding(padding: EdgeInsets.only(left: 8,right: 8,top: 20,bottom: 15)
+            ,child: FutureBuilder<List<Result>>(
+              future: codeforcesApiServices().fetchOngoingContestList(),
+              builder: (context,snapshots){
+                if(!snapshots.hasData)
+                  return Loading();
+                return ListView.builder(itemBuilder: (context,index){
+                  return displayContest(snapshots.data,index);
+                },
+                  itemCount: snapshots.data.length,
+                );
+              },
+            ),
+          )
+        ],
+      ),
     ));
   }
 }

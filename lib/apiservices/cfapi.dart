@@ -9,6 +9,8 @@ class codeforcesApiServices{
     _dio = Dio();
   }
 
+
+  // Fetch ongoing contest list
   Future<List<Result>> fetchOngoingContestList()async{
      try{
        Response response = await _dio.get(apiUrl);
@@ -18,8 +20,19 @@ class codeforcesApiServices{
      on DioError{
        return null;
      }
+  }
 
+  // Fetch upcoming contest list
 
+  Future<List<Result>> fetchUpcomingContestList()async{
+    try{
+      Response response = await _dio.get(apiUrl);
+      Codeforcescontest contest = Codeforcescontest.fromJson(response.data);
+      return contest.result.where((element) => element.phase==Phase.CODING).toList();
+    }
+    on DioError{
+      return null;
+    }
   }
 
 }

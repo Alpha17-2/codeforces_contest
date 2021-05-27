@@ -22,10 +22,6 @@ class home extends StatefulWidget {
   _homeState createState() => _homeState();
 }
 class _homeState extends State<home> {
-  List<Result> _contestList;
-  Iterable<Result> _list;
-  List<Result> _finalList;
-  int len=0;
   @override
   void initState() {
     // TODO: implement initState
@@ -52,44 +48,50 @@ class _homeState extends State<home> {
       );
     }
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              top: displayWidth(context)*0.03,
-              //left: displayWidth(context)*0.02,
-              child: Image(image: AssetImage(
-                'images/cf.png',
+      body: Container(
+        height: displayHeight(context),
+        width: displayWidth(context),
+        constraints: BoxConstraints.expand(),
+        color: Color(0xfbfaebd7),
+        child: SafeArea(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                top: displayWidth(context)*0.03,
+                //left: displayWidth(context)*0.02,
+                child: Image(image: AssetImage(
+                  'images/cf.png',
+                ),
+                  height: displayHeight(context)*0.07,
+                  width: displayWidth(context)*0.54,
+                  fit: BoxFit.fill,
+                ),
               ),
-                height: displayHeight(context)*0.07,
-                width: displayWidth(context)*0.54,
-                fit: BoxFit.fill,
-              ),
-            ),
-            Positioned(
-              top: displayHeight(context)*0.11,
-                child: Container(
-              height: displayHeight(context)*0.84,
-                  width: displayWidth(context)*0.95,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black,width: 2.5),
-                  ),
-                  child: FutureBuilder<List<Result>>(
-                    future: codeforcesApiServices().fetchOngoingContestList(),
-                    builder: (context,snapshots){
-                      if(!snapshots.hasData)
-                        return Loading();
-                      return ListView.builder(itemBuilder: (context,index){
-                        return displayContest(snapshots.data,index);
+              Positioned(
+                top: displayHeight(context)*0.11,
+                  child: Container(
+                height: displayHeight(context)*0.84,
+                    width: displayWidth(context)*0.95,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black,width: 2.5),
+                    ),
+                    child: FutureBuilder<List<Result>>(
+                      future: codeforcesApiServices().fetchOngoingContestList(),
+                      builder: (context,snapshots){
+                        if(!snapshots.hasData)
+                          return Loading();
+                        return ListView.builder(itemBuilder: (context,index){
+                          return displayContest(snapshots.data,index);
+                        },
+                          itemCount: snapshots.data.length,
+                        );
                       },
-                        itemCount: snapshots.data.length,
-                      );
-                    },
-                  )
-            ),
-            )
-          ],
+                    )
+              ),
+              )
+            ],
+          ),
         ),
       ),
     );

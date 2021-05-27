@@ -47,54 +47,33 @@ class _homeState extends State<home> {
 
       );
     }
-    return Scaffold(
-      body: Container(
-        height: displayHeight(context),
-        width: displayWidth(context),
-        constraints: BoxConstraints.expand(),
-        color: Color(0xfbfaebd7),
-        child: SafeArea(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Positioned(
-                top: displayWidth(context)*0.03,
-                //left: displayWidth(context)*0.02,
-                child: Image(image: AssetImage(
-                  'images/cf.png',
-                ),
-                  height: displayHeight(context)*0.07,
-                  width: displayWidth(context)*0.54,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Positioned(
-                top: displayHeight(context)*0.11,
-                  child: Container(
-                height: displayHeight(context)*0.84,
-                    width: displayWidth(context)*0.95,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black,width: 2.5),
-                    ),
-                    child: FutureBuilder<List<Result>>(
-                      future: codeforcesApiServices().fetchOngoingContestList(),
-                      builder: (context,snapshots){
-                        if(!snapshots.hasData)
-                          return Loading();
-                        return ListView.builder(itemBuilder: (context,index){
-                          return displayContest(snapshots.data,index);
-                        },
-                          itemCount: snapshots.data.length,
-                        );
-                      },
-                    )
-              ),
-              )
-            ],
-          ),
+    return DefaultTabController(length: 2, child: Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xfbf6f1f4),
+        title: Image(image: AssetImage(
+          'images/cf.png',
+        ),
+          height: displayHeight(context)*0.07,
+          width: displayWidth(context)*0.54,
+          fit: BoxFit.fill,
+        ),
+        bottom: TabBar(
+          tabs: [
+            Text('Ongoing',style: TextStyle(
+              color: Colors.black87,
+              fontSize: displayWidth(context)*0.042,
+            ),),
+            Text('Upcoming',style: TextStyle(
+              color: Colors.black87,
+              fontSize: displayWidth(context)*0.042,
+            ),),
+          ],
+          labelPadding: EdgeInsets.only(bottom: 13),
+          indicatorColor: Colors.red,
         ),
       ),
-    );
+    ));
   }
 }
 

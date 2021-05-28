@@ -4,6 +4,7 @@ import 'package:codeforces_contest/helpers/loading.dart';
 import 'package:codeforces_contest/models/codeforcescontest.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:add_2_calendar/add_2_calendar.dart';
 void main(){
   runApp(MyApp());
 }
@@ -32,6 +33,15 @@ class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
 
+    Event contestEvent (DateTime dateTime,String title){
+      return Event(
+        title: title,
+        description: 'Coding contest',
+        location: 'Codeforces',
+        endDate: dateTime.add(Duration(minutes: 30)),
+        startDate: dateTime,
+      );
+    }
 
     Widget displayContest(List<Result> contest,int index){
 
@@ -85,7 +95,9 @@ class _homeState extends State<home> {
                 child: IconButton(
                   icon: Icon(Icons.alarm_add),
                   onPressed: (){
-
+                    Add2Calendar.addEvent2Cal(
+                      contestEvent(date, contest[index].name),
+                    );
                   },
                   color: Colors.green,
                 ),
@@ -108,14 +120,14 @@ class _homeState extends State<home> {
           text: TextSpan(
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: displayWidth(context)*0.055,
+              fontSize: displayWidth(context)*0.05,
               fontFamily: 'Goldman',
             ),
             children: [
-             TextSpan(text: 'CODE',style: TextStyle(
+             TextSpan(text: 'CODEFORCES',style: TextStyle(
                color: Colors.black,
              )),
-              TextSpan(text: 'TIME',style: TextStyle(
+              TextSpan(text: 'TIMER',style: TextStyle(
                 color: Colors.red,
               )),
 

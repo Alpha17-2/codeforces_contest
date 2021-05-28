@@ -3,6 +3,7 @@ import 'package:codeforces_contest/helpers/DeviceSize.dart';
 import 'package:codeforces_contest/helpers/loading.dart';
 import 'package:codeforces_contest/models/codeforcescontest.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 void main(){
   runApp(MyApp());
 }
@@ -35,18 +36,41 @@ class _homeState extends State<home> {
     Widget displayContest(List<Result> contest,int index){
 
       var date = DateTime.fromMillisecondsSinceEpoch(contest[index].startTimeSeconds * 1000);
+      String start = DateFormat.yMMMd()
+          .add_jm()
+          .format(DateTime.parse(date.toString()));
       return ListTile(
+        isThreeLine: true,
+        trailing: IconButton(
+          icon: Icon(Icons.alarm_add),
+          onPressed: (){},
+          color: Colors.green,
+        ),
         title: Text(
           contest[index].name,
           style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: displayWidth(context)*0.035,
-            color: Colors.black87,
-          ),
-          overflow: TextOverflow.ellipsis,
+            fontWeight: FontWeight.w500,
+            fontSize: displayWidth(context)*0.038,
+            color: Colors.red[600],
         ),
-        subtitle: Text('Start :'+date.toString().substring(0,19) ),
-
+            overflow: TextOverflow.ellipsis,),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top:8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Start : $start',style: TextStyle(
+                color: Colors.black87,
+                fontSize: displayWidth(context)*0.036,
+              ),),
+              Text('Duration : $start',style: TextStyle(
+                color: Colors.black87,
+                fontSize: displayWidth(context)*0.036,
+              ),)
+            ],
+          ),
+        ),
       );
     }
     return DefaultTabController(length: 2, child: Scaffold(
@@ -72,7 +96,7 @@ class _homeState extends State<home> {
             ),),
           ],
           labelPadding: EdgeInsets.only(bottom: 13),
-          indicatorColor: Colors.red,
+          indicatorColor: Colors.indigo,
         ),
       ),
       body: TabBarView(

@@ -4,7 +4,6 @@ import 'package:codeforces_contest/helpers/loading.dart';
 import 'package:codeforces_contest/models/codeforcescontest.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:add_2_calendar/add_2_calendar.dart';
 void main(){
   runApp(MyApp());
 }
@@ -33,15 +32,6 @@ class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
 
-    Event contestEvent (DateTime dateTime,String title){
-      return Event(
-        title: title,
-        description: 'Coding contest',
-        location: 'Codeforces',
-        endDate: dateTime.add(Duration(minutes: 30)),
-        startDate: dateTime,
-      );
-    }
 
     Widget displayContest(List<Result> contest,int index){
 
@@ -61,6 +51,7 @@ class _homeState extends State<home> {
         ),
         child: SafeArea(
           child: Stack(
+            alignment: Alignment.centerRight,
             children: [
               Positioned(
                 top: displayHeight(context)*0.02,
@@ -87,51 +78,18 @@ class _homeState extends State<home> {
                       fontSize: displayWidth(context)*0.0375,
                       color: Colors.black38,
                     ),
-                  ))
-            ],
-          ),
-        ),
+                  )),
 
+              Positioned(
+                right: displayWidth(context)*0.04,
+                child: IconButton(
+                  icon: Icon(Icons.alarm_add),
+                  onPressed: (){
 
-      );
-
-      return ListTile(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-        tileColor: Colors.pink[100],
-        isThreeLine: true,
-        trailing: IconButton(
-          icon: Icon(Icons.alarm_add),
-          onPressed: (){
-            Add2Calendar.addEvent2Cal(
-              contestEvent(date, contest[index].name),
-            );
-          },
-          color: Colors.green,
-        ),
-        title: Text(
-          contest[index].name,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: displayWidth(context)*0.042,
-            color: Colors.black87,
-        ),
-            overflow: TextOverflow.ellipsis,),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top:8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Start : $start',style: TextStyle(
-                color: Colors.black87,
-                fontSize: displayWidth(context)*0.036,
-                fontWeight: FontWeight.w600,
-              ),),
-              Text('Duration : $start',style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.w600,
-                fontSize: displayWidth(context)*0.036,
-              ),)
+                  },
+                  color: Colors.green,
+                ),
+              ),
             ],
           ),
         ),

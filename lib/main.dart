@@ -39,7 +39,55 @@ class _homeState extends State<home> {
       String start = DateFormat.yMMMd()
           .add_jm()
           .format(DateTime.parse(date.toString()));
+      Color color = Color(0xfbf0f8ff);
+      return Container(
+        height: displayHeight(context)*0.1,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [
+            BoxShadow(color: Colors.black87,offset: Offset(-3,1),blurRadius: 2),
+          ]
+        ),
+        child: SafeArea(
+          child: Stack(
+            children: [
+              Positioned(
+                top: displayHeight(context)*0.02,
+                  left: displayWidth(context)*0.03,
+                  right: displayWidth(context)*0.35,
+                  child: Text(
+                contest[index].name,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: displayWidth(context)*0.0375,
+                      color: Colors.black,
+                    ),
+              )),
+              Positioned(
+                  bottom : displayHeight(context)*0.03,
+                  left: displayWidth(context)*0.03,
+                  right: displayWidth(context)*0.1,
+                  child: Text(
+                  start,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: displayWidth(context)*0.0375,
+                      color: Colors.black38,
+                    ),
+                  ))
+            ],
+          ),
+        ),
+
+
+      );
+
       return ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+        tileColor: Colors.pink[100],
         isThreeLine: true,
         trailing: IconButton(
           icon: Icon(Icons.alarm_add),
@@ -50,8 +98,8 @@ class _homeState extends State<home> {
           contest[index].name,
           style: TextStyle(
             fontWeight: FontWeight.w500,
-            fontSize: displayWidth(context)*0.038,
-            color: Colors.red[600],
+            fontSize: displayWidth(context)*0.042,
+            color: Colors.black87,
         ),
             overflow: TextOverflow.ellipsis,),
         subtitle: Padding(
@@ -63,9 +111,11 @@ class _homeState extends State<home> {
               Text('Start : $start',style: TextStyle(
                 color: Colors.black87,
                 fontSize: displayWidth(context)*0.036,
+                fontWeight: FontWeight.w600,
               ),),
               Text('Duration : $start',style: TextStyle(
                 color: Colors.black87,
+                fontWeight: FontWeight.w600,
                 fontSize: displayWidth(context)*0.036,
               ),)
             ],
@@ -77,23 +127,53 @@ class _homeState extends State<home> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xfbf6f1f4),
-        title: Image(image: AssetImage(
+        leading: Image(image: AssetImage(
           'images/cf.png',
         ),
-          height: displayHeight(context)*0.07,
-          width: displayWidth(context)*0.54,
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
+        ),
+        title: RichText(
+          text: TextSpan(
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: displayWidth(context)*0.055,
+              fontFamily: 'Goldman',
+            ),
+            children: [
+             TextSpan(text: 'CODE',style: TextStyle(
+               color: Colors.black,
+             )),
+              TextSpan(text: 'TIME',style: TextStyle(
+                color: Colors.red,
+              )),
+
+            ]
+          ),
         ),
         bottom: TabBar(
           tabs: [
-            Text('Ongoing',style: TextStyle(
-              color: Colors.black87,
-              fontSize: displayWidth(context)*0.042,
-            ),),
-            Text('Upcoming',style: TextStyle(
-              color: Colors.black87,
-              fontSize: displayWidth(context)*0.042,
-            ),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Ongoing',style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: displayWidth(context)*0.042,
+                ),),
+                SizedBox(width: 8,),
+                Icon(Icons.play_circle_fill,color: Colors.green,),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Upcoming',style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: displayWidth(context)*0.042,
+                ),),
+                SizedBox(width: 8,),
+                Icon(Icons.pending_actions,color: Colors.pink,),
+              ],
+            ),
           ],
           labelPadding: EdgeInsets.only(bottom: 13),
           indicatorColor: Colors.indigo,
@@ -109,7 +189,10 @@ class _homeState extends State<home> {
                 if(!snapshots.hasData)
                   return Loading();
                 return ListView.builder(itemBuilder: (context,index){
-                  return displayContest(snapshots.data,index);
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom:18.0),
+                    child: displayContest(snapshots.data,index),
+                  );
                 },
                   itemCount: snapshots.data.length,
                 );
@@ -125,7 +208,10 @@ class _homeState extends State<home> {
                 if(!snapshots.hasData)
                   return Loading();
                 return ListView.builder(itemBuilder: (context,index){
-                  return displayContest(snapshots.data,index);
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom:18.0),
+                    child: displayContest(snapshots.data,index),
+                  );
                 },
                   itemCount: snapshots.data.length,
                 );

@@ -51,28 +51,72 @@ flutter:
   assets:
     - images/
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
+  fonts:
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+    - family: Pacifico
+      fonts:
+        - asset: fonts/Pacifico-Regular.ttf
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - family: PatuaOne
+      fonts:
+        - asset: fonts/PatuaOne-Regular.ttf
+
+    - family: Quattrocento
+      fonts:
+        - asset: fonts/Quattrocento-Regular.ttf
+    - family: Signika
+      fonts:
+        - asset: fonts/Signika-Regular.ttf
+    - family: Goldman
+      fonts:
+        - asset: fonts/Goldman-Bold.ttf
+
+
+    - family: ZillaSlab
+      fonts:
+        - asset: fonts/ZillaSlab-BoldItalic.ttf
+
+    - family: Goldman
+      fonts:
+        - asset: fonts/Goldman-Bold.ttf
+
+
+    - family: HammersmithOne
+      fonts:
+        - asset: fonts/HammersmithOne-Regular.ttf
+
+    - family: AlfaSlabOne
+      fonts:
+        - asset: fonts/AlfaSlabOne-Regular.ttf
+
+    - family: BreeSerif
+      fonts:
+        - asset: fonts/BreeSerif-Regular.ttf
+
+    - family: CreteRound
+      fonts:
+        - asset: fonts/CreteRound-Regular.ttf
+
+    - family: ConcertOne
+      fonts:
+        - asset: fonts/ConcertOne-Regular.ttf
+
+    - family: Grandstander
+      fonts:
+        - asset: fonts/Grandstander-VariableFont_wght.ttf
+
+    - family: Fredoka One
+      fonts:
+        - asset: fonts/FredokaOne-Regular.ttf
+
+    - family: Acme
+      fonts:
+        - asset: fonts/Acme-Regular.ttf
+
+    - family: Ranchers
+      fonts:
+        - asset: fonts/Ranchers-Regular.ttf
+
+    - family: Monoton
+      fonts:
+        - asset: fonts/Monoton-Regular.ttf

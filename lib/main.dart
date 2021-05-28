@@ -33,6 +33,8 @@ class _homeState extends State<home> {
 
 
     Widget displayContest(List<Result> contest,int index){
+
+      var date = DateTime.fromMillisecondsSinceEpoch(contest[index].startTimeSeconds * 1000);
       return ListTile(
         title: Text(
           contest[index].name,
@@ -43,7 +45,7 @@ class _homeState extends State<home> {
           ),
           overflow: TextOverflow.ellipsis,
         ),
-        subtitle: Text('Start :'+contest[index].startTimeSeconds.toString() ),
+        subtitle: Text('Start :'+date.toString().substring(0,19) ),
 
       );
     }

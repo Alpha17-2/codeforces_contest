@@ -28,7 +28,7 @@ class codeforcesApiServices{
     try{
       Response response = await _dio.get(apiUrl);
       Codeforcescontest contest = Codeforcescontest.fromJson(response.data);
-      return contest.result.where((element) => element.phase==Phase.CODING).toList();
+      return contest.result.where((element) => element.phase==Phase.BEFORE).toList();
     }
     on DioError{
       return null;

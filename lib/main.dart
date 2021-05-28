@@ -43,7 +43,7 @@ class _homeState extends State<home> {
           ),
           overflow: TextOverflow.ellipsis,
         ),
-        subtitle: Text('Start : ${contest[index].phase}'),
+        subtitle: Text('Start :'+contest[index].startTimeSeconds.toString() ),
 
       );
     }
@@ -94,7 +94,7 @@ class _homeState extends State<home> {
           // Upcoming contests
           Padding(padding: EdgeInsets.only(left: 8,right: 8,top: 20,bottom: 15)
             ,child: FutureBuilder<List<Result>>(
-              future: codeforcesApiServices().fetchOngoingContestList(),
+              future: codeforcesApiServices().fetchUpcomingContestList(),
               builder: (context,snapshots){
                 if(!snapshots.hasData)
                   return Loading();

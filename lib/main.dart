@@ -32,12 +32,12 @@ class _homeState extends State<home> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    Event contestEvent (DateTime dateTime,String title){
+    Event contestEvent (int durationInSeconds,DateTime dateTime,String title){
       return Event(
         title: title,
         description: 'Coding contest',
         location: 'Codeforces',
-        endDate: dateTime.add(Duration(minutes: 30)),
+        endDate: dateTime.add(Duration(seconds: durationInSeconds)),
         startDate: dateTime,
       );
     }
@@ -95,7 +95,7 @@ class _homeState extends State<home> {
                   icon: Icon(Icons.alarm_add),
                   onPressed: (){
                     Add2Calendar.addEvent2Cal(
-                      contestEvent(date, widget.upcomingContestList[index].name),
+                      contestEvent(widget.upcomingContestList[index].durationSeconds,date, widget.upcomingContestList[index].name),
                     );
                   },
                   color: Colors.green,
@@ -108,7 +108,6 @@ class _homeState extends State<home> {
     }
 
     Widget displayOngoingContest(int index){
-
       var date = DateTime.fromMillisecondsSinceEpoch(widget.ongoingContestList[index].startTimeSeconds * 1000);
       String start = DateFormat.yMMMd()
           .add_jm()
@@ -153,19 +152,6 @@ class _homeState extends State<home> {
                       color: Colors.black38,
                     ),
                   )),
-
-              Positioned(
-                right: displayWidth(context)*0.04,
-                child: IconButton(
-                  icon: Icon(Icons.alarm_add),
-                  onPressed: (){
-                    Add2Calendar.addEvent2Cal(
-                      contestEvent(date, widget.ongoingContestList[index].name),
-                    );
-                  },
-                  color: Colors.green,
-                ),
-              ),
             ],
           ),
         ),

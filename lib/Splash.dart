@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xfbf0fff0),
+        color: Colors. black,
         constraints: BoxConstraints.expand(),
         height: displayHeight(context),
         width: displayWidth(context),
@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                     children: [
                       TextSpan(text: 'CODEFORCES',style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                       )),
                       TextSpan(text: 'TIMER',style: TextStyle(
                         color: Colors.red,

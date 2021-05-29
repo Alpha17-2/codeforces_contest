@@ -15,3 +15,19 @@ class Loading extends StatelessWidget {
     );
   }
 }
+
+class Loading2 extends StatelessWidget {
+  const Loading2({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: SpinKitCircle(
+          color: Colors.yellow[200],
+          size: displayWidth(context) * 0.1,
+        ),
+      ),
+    );
+  }
+}

@@ -1,6 +1,7 @@
 import 'package:codeforces_contest/Splash.dart';
 import 'package:codeforces_contest/apiservices/cfapi.dart';
 import 'package:codeforces_contest/helpers/DeviceSize.dart';
+import 'package:codeforces_contest/helpers/loading.dart';
 import 'package:codeforces_contest/models/codeforcescontest.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -28,6 +29,7 @@ class home extends StatefulWidget {
   _homeState createState() => _homeState();
 }
 class _homeState extends State<home> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     Event contestEvent (DateTime dateTime,String title){
@@ -254,7 +256,7 @@ class _homeState extends State<home> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
-        child: Column(
+        child: isLoading?Loading2():Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.api,color: Colors.white,size: displayWidth(context)*0.045,),
@@ -264,10 +266,14 @@ class _homeState extends State<home> {
           ],
         ) ,
         onPressed: ()async{
+          setState(() {
+            isLoading = true;
+          });
           widget.upcomingContestList = await codeforcesApiServices().fetchUpcomingContestList();
           widget.ongoingContestList = await codeforcesApiServices().fetchOngoingContestList();
           //  debugPrintStack(label: 'new list caught');
           setState(() {
+            isLoading = false;
           });
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:
           Text('Contest list has been successfully updated !!'),duration: Duration(seconds: 4),));

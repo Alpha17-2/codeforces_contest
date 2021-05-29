@@ -10,7 +10,6 @@ void main(){
 }
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,24 +23,21 @@ class home extends StatefulWidget {
   _homeState createState() => _homeState();
 }
 class _homeState extends State<home> {
-  @override
-  List<Result> upcomingContestList;
-  List<Result> ongoingContestList;
+   List<Result> upcomingContestList;
+   List<Result> ongoingContestList;
+
+  _homeState({this.upcomingContestList, this.ongoingContestList});
+
 
   void initState() {
     // TODO: implement initState
     super.initState();
-    getContestList();
   }
 
-  void getContestList()async{
-    upcomingContestList = await codeforcesApiServices().fetchUpcomingContestList();
-    ongoingContestList = await codeforcesApiServices().fetchOngoingContestList();
-  }
+
 
   @override
   Widget build(BuildContext context) {
-
     Event contestEvent (DateTime dateTime,String title){
       return Event(
         title: title,

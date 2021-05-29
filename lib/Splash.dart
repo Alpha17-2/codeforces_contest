@@ -1,4 +1,5 @@
 import 'package:codeforces_contest/apiservices/cfapi.dart';
+import 'package:codeforces_contest/helpers/loading.dart';
 import 'package:codeforces_contest/main.dart';
 import 'package:codeforces_contest/models/codeforcescontest.dart';
 import 'package:flutter/material.dart';
@@ -17,18 +18,13 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     _mockCheckForSession().then((status) {
-    //  _navigateToHome();
+      _navigateToHome();
     });
   }
 
   Future<bool> _mockCheckForSession() async {
     ongoing =  await codeforcesApiServices().fetchOngoingContestList();
     upcoming = await codeforcesApiServices().fetchUpcomingContestList();
-
-    await Future.delayed(Duration(seconds: 3), () {
-
-    });
-
     return true;
   }
 
@@ -49,6 +45,25 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              RichText(
+                text: TextSpan(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: displayWidth(context)*0.065,
+                      fontFamily: 'Goldman',
+                    ),
+                    children: [
+                      TextSpan(text: 'CODEFORCES',style: TextStyle(
+                        color: Colors.black,
+                      )),
+                      TextSpan(text: 'TIMER',style: TextStyle(
+                        color: Colors.red,
+                      )),
+                    ]
+                ),
+              ),
+              SizedBox(height: 20,),
+              Loading(),
             ],
           ),
         ),

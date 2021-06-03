@@ -53,7 +53,7 @@ class _homeState extends State<home> {
         height: displayHeight(context)*0.1,
         decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(color: Colors.black87,offset: Offset(-3,1),blurRadius: 2),
             ]
@@ -117,7 +117,7 @@ class _homeState extends State<home> {
         height: displayHeight(context)*0.1,
         decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(color: Colors.black87,offset: Offset(-3,1),blurRadius: 2),
             ]
@@ -160,7 +160,7 @@ class _homeState extends State<home> {
     return DefaultTabController(length: 2, child: Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(0xfbf6f1f4),
+        backgroundColor: Colors.black,
         leading: Image(image: AssetImage(
           'images/cf.png',
         ),
@@ -175,7 +175,7 @@ class _homeState extends State<home> {
               ),
               children: [
                 TextSpan(text: 'CODEFORCES',style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                 )),
                 TextSpan(text: 'TIMER',style: TextStyle(
                   color: Colors.red,
@@ -189,7 +189,7 @@ class _homeState extends State<home> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Ongoing',style: TextStyle(
-                  color: Colors.black87,
+                  color: Colors.white,
                   fontSize: displayWidth(context)*0.042,
                 ),),
                 SizedBox(width: 8,),
@@ -200,7 +200,7 @@ class _homeState extends State<home> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Upcoming',style: TextStyle(
-                  color: Colors.black87,
+                  color: Colors.white,
                   fontSize: displayWidth(context)*0.042,
                 ),),
                 SizedBox(width: 8,),
@@ -209,34 +209,44 @@ class _homeState extends State<home> {
             ),
           ],
           labelPadding: EdgeInsets.only(bottom: 13),
-          indicatorColor: Colors.indigo,
+          indicatorColor: Colors.white,
         ),
       ),
       body: TabBarView(
         children: [
           // Ongoing contest
-          Padding(
-            padding: const EdgeInsets.only(left: 8,right: 8,top: 20,bottom: 15),
-            child: ListView.builder(itemBuilder: (context,index){
-              return Padding(
-                padding: const EdgeInsets.only(bottom:18.0),
-                child: displayOngoingContest(index),
-              );
-            },
-              itemCount: widget.ongoingContestList.length,
+          Container(
+            height: displayHeight(context),
+            width: displayWidth(context),
+            color: Colors.black,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15),
+              child: ListView.builder(itemBuilder: (context,index){
+                return Padding(
+                  padding: const EdgeInsets.only(bottom:15.0),
+                  child: displayOngoingContest(index),
+                );
+              },
+                itemCount: widget.ongoingContestList.length,
+              ),
             ),
           ),
 
           // Upcoming contests
-          Padding(padding: EdgeInsets.only(left: 8,right: 8,top: 20,bottom: 15)
-              ,child: ListView.builder(itemBuilder: (context,index){
-                return Padding(
-                  padding: const EdgeInsets.only(bottom:18.0),
-                  child: displayUpcomingContest(index),
-                );
-              },
-                itemCount: widget.upcomingContestList.length,
-              )
+          Container(
+            height: displayHeight(context),
+            width: displayWidth(context),
+            color: Colors.black,
+            child: Padding(padding: EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15)
+                ,child: ListView.builder(itemBuilder: (context,index){
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom:15.0),
+                    child: displayUpcomingContest(index),
+                  );
+                },
+                  itemCount: widget.upcomingContestList.length,
+                )
+            ),
           ),
         ],
       ),

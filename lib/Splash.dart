@@ -13,8 +13,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  List<Result> ongoing;
-  List<Result> upcoming;
+  List<Result> ongoing=[];
+  List<Result> upcoming=[];
   void initState() {
     super.initState();
     _mockCheckForSession().then((status) {

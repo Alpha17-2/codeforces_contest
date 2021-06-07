@@ -219,7 +219,7 @@ class _homeState extends State<home> {
             height: displayHeight(context),
             width: displayWidth(context),
             color: Colors.black,
-            child: Padding(
+            child: widget.ongoingContestList.length!=0?Padding(
               padding: const EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15),
               child: ListView.builder(itemBuilder: (context,index){
                 return Padding(
@@ -229,7 +229,12 @@ class _homeState extends State<home> {
               },
                 itemCount: widget.ongoingContestList.length,
               ),
-            ),
+            ):Center(
+              child: Text('No ongoing contests',style: TextStyle
+                (color: Colors.white,
+                fontSize: displayWidth(context)*0.04
+              ),),
+            )
           ),
 
           // Upcoming contests
@@ -237,7 +242,7 @@ class _homeState extends State<home> {
             height: displayHeight(context),
             width: displayWidth(context),
             color: Colors.black,
-            child: Padding(padding: EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15)
+            child: widget.upcomingContestList.length!=0?Padding(padding: EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15)
                 ,child: ListView.builder(itemBuilder: (context,index){
                   return Padding(
                     padding: const EdgeInsets.only(bottom:15.0),
@@ -246,6 +251,11 @@ class _homeState extends State<home> {
                 },
                   itemCount: widget.upcomingContestList.length,
                 )
+            ):Center(
+              child: Text('No Upcoming contests',style: TextStyle
+                (color: Colors.white,
+                  fontSize: displayWidth(context)*0.04
+              ),),
             ),
           ),
         ],

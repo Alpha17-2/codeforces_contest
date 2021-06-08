@@ -6,6 +6,7 @@ import 'package:codeforces_contest/models/codeforcescontest.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 void main(){
   runApp(MyApp());
@@ -222,9 +223,18 @@ class _homeState extends State<home> {
             child: widget.ongoingContestList.length!=0?Padding(
               padding: const EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15),
               child: ListView.builder(itemBuilder: (context,index){
-                return Padding(
-                  padding: const EdgeInsets.only(bottom:15.0),
-                  child: displayOngoingContest(index),
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: const Duration(milliseconds: 380),
+                  child: SlideAnimation(
+                    verticalOffset: 50.0,
+                    child:ScaleAnimation(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom:15.0),
+                        child: displayOngoingContest(index),
+                      ),
+                    ),
+                  ),
                 );
               },
                 itemCount: widget.ongoingContestList.length,
@@ -244,9 +254,18 @@ class _homeState extends State<home> {
             color: Colors.black,
             child: widget.upcomingContestList.length!=0?Padding(padding: EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15)
                 ,child: ListView.builder(itemBuilder: (context,index){
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom:15.0),
-                    child: displayUpcomingContest(index),
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 400),
+                    child: SlideAnimation(
+                      verticalOffset: 50.0,
+                      child: ScaleAnimation(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom:15.0),
+                          child: displayUpcomingContest(index),
+                        ),
+                      ),
+                    ),
                   );
                 },
                   itemCount: widget.upcomingContestList.length,
